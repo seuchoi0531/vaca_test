@@ -4,11 +4,6 @@
     padding: 0;
 }
 
-@font-face {
-    font-family: MalgunGothic;
-    src: url(font/MalgunGothic.eot);
-}
-
 @page {
     size: A4;
     margin: 20mm;
@@ -34,6 +29,9 @@ body {
     box-sizing: border-box;
     overflow: hidden;
     margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 #right_area {
@@ -41,107 +39,8 @@ body {
     height: 96vh;
     padding: 20px;
     box-sizing: border-box;
-    overflow: auto;
-    background-color: #d9d9d9;
-}
-#left_area_head{
     display: flex;
-    width: 210mm;
-    margin: 0 auto;
-    justify-content: space-between;
-}
-#left_area_table {
-    width: 210mm;
-    height: 297mm;
-    transform: scale(1);
-    margin: 0 auto;
-    border: 1px solid #000;
-    padding: 10mm;
-    box-sizing: border-box;
-}
-
-table,
-tr,
-td {
-    border: 1px black solid;
-    border-collapse: collapse;
-    font-family: "MalgunGothic" !important;
-}
-
-table {
-    width: 1686pt;
-    margin: 20px auto;
-}
-
-td {
-    width: 421.5pt;
-    height: 60pt;
-    font-size: 30px;
-}
-
-tr:nth-child(1)>td {
-    width: 1686pt;
-    height: 87pt;
-    font-size: 26px;
-    background-color: #FFF2CC;
-    text-align: center;
-}
-
-.title_bold {
-    font-weight: bold;
-}
-
-.word {
-    height: 58.5pt;
-    font-size: 24px;
-    background-color: #FFF2CC;
-}
-
-.meaning {
-    height: 58.5pt;
-    font-size: 24px;
-    background-color: #FFF2CC;
-}
-
-nav {
-    width: 100px;
-    margin: 0;
-    height: 100%;
-    text-align: center;
-    background-color: rgb(155, 155, 155);
-    border-right: 5px #000000 solid;
-    position: fixed;
-    top: 0;
-    left: 0;
-}
-
-nav>button {
-    height: 50px;
-    width: 40%;
-    border-radius: 10px;
-    display: inline-block;
-    position: absolute;
-    top: 0px;
-    text-align: center;
-    background-color: white;
-    border-style: none;
-    box-shadow: 0 4px 0 0 #717171;
-}
-
-#show_word_button {
-    transform: translate(-112.5%, 25px);
-}
-
-#show_word_button:active {
-    box-shadow: 0 0 0 0 #717171;
-    transform: translate(-112.5%, 29px);
-}
-
-#show_meaning_button {
-    transform: translate(12.5%, 25px);
-}
-
-#show_meaning_button:active {
-    box-shadow: 0 0 0 0 #717171;
-    transform: translate(12.5%, 29px);
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: stretch;
 }

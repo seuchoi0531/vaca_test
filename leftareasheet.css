@@ -1,0 +1,88 @@
+@font-face {
+    font-family: MalgunGothic;
+    src: url(font/MalgunGothic.eot);
+}
+
+#left_area_head {
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+#left_area_head_title {
+    font-size: 23px;
+    font-weight: bold;
+}
+
+#left_area_table {
+    /*width: 210mm;*/
+    /*height: 297mm;*/
+    transform: scale(1);
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+table,
+tr,
+td {
+    border: 1px black solid;
+    border-collapse: collapse;
+    font-family: "MalgunGothic" !important;
+}
+
+/*
+table {
+    width: 1686pt;
+    margin: 20px auto;
+}
+
+td {
+    width: 421.5pt;
+    height: 60pt;
+    font-size: 30px;
+}
+
+tr:nth-child(1)>td {
+    width: 1686pt;
+    height: 87pt;
+    font-size: 26px;
+    background-color: #FFF2CC;
+    text-align: center;
+}
+
+.word {
+    height: 58.5pt;
+    font-size: 24px;
+    background-color: #FFF2CC;
+}
+
+.meaning {
+    height: 58.5pt;
+    font-size: 24px;
+    background-color: #FFF2CC;
+}
+*/
+
+#row1 {
+    font-size: 13px;
+    background-color: #FFF2CC;
+    text-align: center;
+}
+
+.title_bold {
+    font-weight: bold;
+}
+
+.word {
+    height: 58.5pt;
+    font-size: 12px;
+    text-align: center;
+    background-color: #FFF2CC;
+}
+
+.meaning {
+    height: 58.5pt;
+    font-size: 12px;
+    text-align: center;
+    background-color: #FFF2CC;
+}

@@ -15,6 +15,102 @@ $(document).ready(function () {
 
     const basePath = '../voca/page';
     const fileExtension = '.txt';
+    function setSizeInRightArea() {
+        var right_area = document.getElementById("right_area");
+        var word_input_area = document.getElementById("word_input_area");
+        var button_area = document.getElementById("button_area");
+        var checkbox_area = document.getElementById("checkbox_area");
+        var div_height = right_area.offsetHeight * 0.28;
+        word_input_area.style.height = div_height + "px";
+        button_area.style.height = div_height + "px";
+        checkbox_area.style.height = div_height + "px";
+    }
+    setSizeInRightArea();
+
+    function setSizeInLeftArea() {
+        var left_area = document.getElementById("left_area");
+        var left_area_head = document.getElementById("left_area_head");
+        var left_area_table = document.getElementById("left_area_table");
+        var div_width = left_area.offsetWidth * 0.9;
+        left_area_head.style.width = div_width + "px";
+        left_area_table.style.width = div_width + "px";
+        left_area_table.style.height = (div_width * 297 / 210) + "px";
+
+        var a4width = left_area_table.style.width;
+        var a4height = left_area_table.style.height;
+        left_area_table.style.padding = parseFloat(a4height.substring(0, a4height.length - 2)) * 30 / 297 + "px " + parseFloat(a4width.substring(0, a4width.length - 2)) * 20 / 210 + "px auto";
+        //a4width = (parseFloat(a4height.substring(0, a4height.length - 2)) - parseFloat(left_area_table.style.padding.substring(0, left_area_table.style.padding.length - 2))) + "px";
+
+        var a4 = document.getElementById("a4");
+        a4.style.width = a4width;
+        a4.style.height = parseFloat(a4width.substring(0, a4width.length - 2)) * 87 / 1686 + "px";
+
+        var row1 = document.getElementById("row1");
+        row1.style.width = a4width;
+        row1.style.height = parseFloat(a4width.substring(0, a4width.length - 2)) * 87 / 1686 + "px";
+        row1.style.fontSize = parseFloat(a4width.substring(0, a4width.length - 2)) * 26 / 1686 + "px";
+
+        var row21 = document.getElementsByClassName("word");
+        var row22 = document.getElementsByClassName("meaning");
+        row21[0].style.width = parseFloat(row1.style.width.substring(0, row1.style.width.length - 2)) / 4 + "px";
+        row21[0].style.height = parseFloat(row21[0].style.width.substring(0, row21[0].style.width.length - 2)) * 58.5 / 421.5 + "px";
+        row21[0].style.fontSize = parseFloat(row21[0].style.height.substring(0, row21[0].style.height.length - 2)) * 24 / 58.5 + "px";
+
+        row21[1].style.width = row21[0].style.width;
+        row21[1].style.height = row21[0].style.height;
+        row21[1].style.fontSize = row21[0].style.fontSize;
+
+        row22[0].style.width = row21[0].style.width;
+        row22[0].style.height = row21[0].style.height;
+        row22[0].style.fontSize = row21[0].style.fontSize;
+
+        row22[1].style.width = row21[0].style.width;
+        row22[1].style.height = row21[0].style.height;
+        row22[1].style.fontSize = row21[0].style.fontSize;
+        var td = document.getElementsByTagName("td");
+        for (var i = 5; i < td.length; i++) {
+            td[i].style.width = row21[0].style.width;
+            td[i].style.height = row21[0].style.height;
+            td[i].style.fontSize = parseFloat(row21[0].style.fontSize.substring(0, row21[0].style.fontSize.lenght - 2)) * 30 / 24 + "px";
+        }
+
+        /*
+        var a4width = left_area_table.offsetWidth
+        var a4height = left_area_table.offsetHeight
+        left_area_table.style.padding = a4height * 30 / 297 + "px " + a4width * 20 / 210 + "px auto";
+
+        var a4 = document.getElementById("a4");
+        a4.style.width = "100%";
+        a4.style.height = a4.offsetWidth * 87 / 1686 + "%";
+
+        var row1 = document.getElementById("row1");
+        row1.style.width = a4.offsetWidth;
+        row1.style.height = row1.offsetWidth * 87 / 1686 + "px";
+        row1.style.fontSize = row1.offsetHeight * 26 / 87 + "px";
+        
+        var row21 = document.getElementsByClassName("word");
+        var row22 = document.getElementsByClassName("meaning");
+        row21[0].style.width = "25%";
+        row21[0].style.height = row21[0].offsetWidth * 58.5 / 421.5 + "px";
+        row21[0].style.fontSize = row21[0].offsetHeight * 24 / 58.5 + "px";
+
+        row21[1].style.width = "25%";
+        row21[1].style.height = row21[1].offsetWidth * 58.5 / 421.5 + "px";
+        row21[1].style.fontSize = row21[1].offsetHeight * 24 / 58.5 + "px";
+
+        row22[0].style.width = "25%";
+        row22[0].style.height = row22[0].offsetWidth * 58.5 / 421.5 + "px";
+        row22[0].style.fontSize = row22[0].offsetHeight * 24 / 58.5 + "px";
+
+        row22[1].style.width = "25%";
+        row22[1].style.height = row22[1].offsetWidth * 58.5 / 421.5 + "px";
+        row22[1].style.fontSize = row22[1].offsetHeight * 24 / 58.5 + "px";
+        var td = document.getElementsByTagName("td");
+        for (var i = 5; i < td.length; i++)
+            td[i].style.height = td[i].offsetWidth * 58.5 / 421.5 + "px";
+        */
+    }
+    setSizeInLeftArea();
 
     var left_area_table = document.getElementById("left_area_table");
     function adjustZoom() {
@@ -25,7 +121,9 @@ $(document).ready(function () {
     }
 
     // 화면을 리사이즈 할 때마다 호출
-    window.addEventListener('resize', adjustZoom);
+    //window.addEventListener('resize', adjustZoom);
+    window.addEventListener('resize', setSizeInRightArea);
+    window.addEventListener('resize', setSizeInLeftArea);
 
     function fetchFile(txt_number) {
         const filePath = `${basePath}${txt_number}${fileExtension}`;

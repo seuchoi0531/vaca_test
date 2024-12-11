@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="mainsheet.css">
+    <link rel="stylesheet" href="leftareasheet.css">
+    <link rel="stylesheet" href="rightareasheet.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="main.js"></script>
     <title>다너짱</title>
@@ -18,16 +20,16 @@
                 <div id="resize_button_area"></div>
             </div>
             <div id="left_area_table">
-                <table class="a4">
+                <table id="a4">
                     <tr>
-                        <td colspan="4"><span class="title_bold">수능영단어 시험 RANDOM 60개</span> 날짜:_____________
+                        <td id="row1" colspan="4"><span class="title_bold">수능영단어 시험 RANDOM 60개</span> 날짜:_____________
                             이름:______________</td>
                     </tr>
                     <tr>
-                        <td class="word"></td>
-                        <td class="meaning"></td>
-                        <td class="word"></td>
-                        <td class="meaning"></td>
+                        <td class="word">영어</td>
+                        <td class="meaning">뜻</td>
+                        <td class="word">영어</td>
+                        <td class="meaning">뜻</td>
                     </tr>
                     <tr>
                         <td></td>
@@ -213,9 +215,22 @@
             </div>
         </div>
         <div id="right_area">
-            <div id="word_input_area"></div>
-            <div id="button_area"></div>
-            <div id="checkbox_area"></div>
+            <div id="word_input_area">
+                단어 입력
+                <textarea placeholder="단어를 붙여넣기 해주세요." id="word_area"></textarea>
+            </div>
+            <div id="button_area">
+                <button id="show_random_word_button">랜덤 단어 선정</button>
+                <button id="show_word_button">단어 보이기</button>
+                <button id="show_meaning_button">뜻 보이기</button>
+            </div>
+            <div id="checkbox_area">
+                <label><div><input type="checkbox" name="show_day">날짜표기란 표시</div></label>
+                <label><div><input type="checkbox" name="show_name">이름표기란 표시</div></label>
+                <label><div><input type="checkbox" name="show_re_test">"(재시험)" 표시</div></label>
+                <label><div><input type="checkbox" name="show_test_answer">"(본시험답지)" 표시</div></label>
+                <label><div><input type="checkbox" name="show_re_test_answer">"(재시험답지)" 표시</div></label>
+            </div>
         </div>
     </div>
 </body>
