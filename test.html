@@ -1,0 +1,303 @@
+<!--
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인쇄 미리보기와 인쇄</title>
+    <style>
+        /* A4 용지 크기 설정 */
+        @page {
+            size: A4;
+            margin: 20mm;
+        }
+
+        /* 인쇄 미디어에서 적용되는 스타일 */
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+            }
+
+            /* 테이블을 A4 용지 크기에 맞게 조정 */
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            th,
+            td {
+                border: 1px solid black;
+                padding: 8px;
+                text-align: center;
+            }
+
+            /* 페이지에 맞게 테이블 크기 조정 */
+            .print-container {
+                width: 100%;
+                height: 100%;
+                display: block;
+                page-break-before: always;
+            }
+        }
+
+        /* 기본 스타일 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+
+        /* 버튼 스타일 */
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>테이블 인쇄 예제</h1>
+
+    <table id="printTable">
+        <thead>
+            <tr>
+                <th>이름</th>
+                <th>나이</th>
+                <th>직업</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>홍길동</td>
+                <td>30</td>
+                <td>개발자</td>
+            </tr>
+            <tr>
+                <td>김철수</td>
+                <td>25</td>
+                <td>디자이너</td>
+            </tr>
+            <tr>
+                <td>박영희</td>
+                <td>28</td>
+                <td>PM</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button onclick="printTable()">인쇄 미리보기</button>
+
+    <script>
+        function printTable() {
+            // 새로운 창을 열고 테이블을 그곳에 출력
+            const printWindow = window.open('', '_blank', 'width=800, height=600');
+
+            // HTML을 출력
+            printWindow.document.write('<html><head><title>인쇄 미리보기</title>');
+            printWindow.document.write('<style>/* A4 용지 크기 설정 */');
+            printWindow.document.write('@page { size: A4; margin: 20mm; }');
+            printWindow.document.write('@media print { body { margin: 0; padding: 0; } table { width: 100%; border-collapse: collapse; } th, td { border: 1px solid black; padding: 8px; text-align: center; } }</style>');
+            printWindow.document.write('</head><body>');
+
+            // 테이블을 복사하여 새 창에 붙여넣기
+            printWindow.document.write('<div class="print-container">');
+            printWindow.document.write(document.getElementById('printTable').outerHTML);
+            printWindow.document.write('</div>');
+
+            // 인쇄 명령 실행
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+
+            // 인쇄 창 열기
+            printWindow.print();
+
+            // 인쇄 대화 상자가 열리면 일정 시간 후 창을 닫도록 설정
+            setTimeout(function () {
+                // 새 창을 닫음 (사용자가 인쇄를 취소했을 때도 적용)
+                printWindow.close();
+            }, 100); // 1초 후 자동으로 창 닫기
+
+        }
+    </script>
+
+</body>
+
+</html>
+
+-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실시간 A4 미리보기</title>
+    <style>
+        /* A4 용지 크기 설정 */
+        @page {
+            size: A4;
+            margin: 20mm;
+        }
+
+        /* 기본 레이아웃 */
+        body {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+        }
+
+        /* 왼쪽 영역 (A4 용지 크기) */
+        .left {
+            width: 48%;
+            height: 100vh;
+            border: 1px solid black;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow: hidden;
+            margin-right: 20px;
+        }
+
+        /* 오른쪽 영역 (설정 필드) */
+        .right {
+            width: 48%;
+            height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow: auto;
+            background-color: #f4f4f4;
+        }
+
+        /* A4 용지 크기 (왼쪽 영역) */
+        .a4-paper {
+            width: 210mm;
+            height: 297mm;
+            margin: 0 auto;
+            border: 1px solid #000;
+            padding: 10mm;
+            box-sizing: border-box;
+        }
+
+        .content {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            word-wrap: break-word;
+        }
+
+        /* 실시간 입력 필드 */
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- 왼쪽 영역 (A4 용지 크기) -->
+        <div class="left">
+            <h2>A4 용지 미리보기</h2>
+            <div class="a4-paper" id="a4Paper">
+                <div class="content" id="previewContent">
+                    <!-- 실시간 변경될 내용 -->
+                    이곳에 오른쪽에서 설정한 내용이 반영됩니다.
+                </div>
+            </div>
+        </div>
+
+        <!-- 오른쪽 영역 (설정 필드) -->
+        <div class="right">
+            <h2>설정하기</h2>
+            <label for="inputText">내용 입력:</label>
+            <textarea id="inputText" rows="10" placeholder="여기에 텍스트를 입력하세요."></textarea>
+
+            <label for="fontSize">폰트 크기:</label>
+            <input type="number" id="fontSize" min="10" max="48" value="16" />
+
+            <label for="fontFamily">폰트 선택:</label>
+            <select id="fontFamily">
+                <option value="Arial">Arial</option>
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="Courier New">Courier New</option>
+            </select>
+
+            <button onclick="printPreview()">인쇄 미리보기</button>
+        </div>
+    </div>
+
+    <script>
+        // 실시간으로 왼쪽 영역을 업데이트하는 함수
+        const inputText = document.getElementById('inputText');
+        const fontSizeInput = document.getElementById('fontSize');
+        const fontFamilyInput = document.getElementById('fontFamily');
+        const previewContent = document.getElementById('previewContent');
+
+        inputText.addEventListener('input', updatePreview);
+        fontSizeInput.addEventListener('input', updatePreview);
+        fontFamilyInput.addEventListener('change', updatePreview);
+
+        function updatePreview() {
+            // 실시간으로 왼쪽 내용 업데이트
+            previewContent.textContent = inputText.value;
+
+            // 폰트 크기와 폰트 가족 업데이트
+            const fontSize = fontSizeInput.value;
+            const fontFamily = fontFamilyInput.value;
+
+            previewContent.style.fontSize = fontSize + 'px';
+            previewContent.style.fontFamily = fontFamily;
+        }
+
+        // 인쇄 미리보기 버튼 클릭 시
+        function printPreview() {
+            const printWindow = window.open('', '_blank', 'width=800, height=600');
+            
+            // 새로운 창에 HTML을 삽입
+            printWindow.document.write('<html><head><title>인쇄 미리보기</title>');
+            printWindow.document.write('<style>/* A4 용지 크기 설정 */');
+            printWindow.document.write('@page { size: A4; margin: 20mm; }');
+            printWindow.document.write('@media print { body { margin: 0; padding: 0; } }</style>');
+            printWindow.document.write('</head><body>');
+            printWindow.document.write('<div class="a4-paper">');
+            printWindow.document.write(previewContent.innerHTML); // 왼쪽의 내용을 가져옴
+            printWindow.document.write('</div>');
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+
+            // 인쇄 명령 실행
+            printWindow.print();
+        }
+
+    </script>
+
+</body>
+</html>
